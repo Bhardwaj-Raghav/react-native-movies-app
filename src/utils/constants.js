@@ -7,6 +7,7 @@ const MOVIE_DB_API_BASE_URL = "https://api.themoviedb.org/3/";
 const MOVIE_DB_API_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
 
 const MOVIE_REQUEST_TYPE = ["Now Playing", "Popular", "Top Rated", "Upcoming"];
+const TV_REQUEST_TYPE = ["Airing Today", "On The Air", "Popular", "Top Rated"];
 
 const ENDPOINTS = {
   movie: {
@@ -37,4 +38,5 @@ export {
   ENDPOINTS,
   MOVIE_REQUEST_TYPE,
   MOVIE_DB_API_IMAGE_BASE_URL,
+  TV_REQUEST_TYPE,
 };

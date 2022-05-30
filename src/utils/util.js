@@ -6,7 +6,6 @@ const buildURL = (endpoint, type, page = 1) => {
   if (!typeEndpoint) {
     throw new Error("Invalid Url Data");
   }
-  console.log({ MOVIE_DB_API_KEY });
   return `${lowerCaseEndpoint}/${typeEndpoint}/?api_key=${MOVIE_DB_API_KEY}&page=${page}`;
 };
 

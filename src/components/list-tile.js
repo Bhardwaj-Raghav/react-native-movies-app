@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 
 import { BUTTON_COLOR, MOVIE_DB_API_IMAGE_BASE_URL } from "../utils/constants";
 
-const MovieTile = ({ id, title, popularity, releaseDate, imageUrl }) => {
+const ListTile = ({ id, title, popularity, releaseDate, imageUrl }) => {
   return (
     <View style={styles.movieTile}>
       <Image
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MovieTile;
+export default ListTile;
