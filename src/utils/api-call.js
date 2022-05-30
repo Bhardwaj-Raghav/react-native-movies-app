@@ -9,7 +9,6 @@ const apiRequest = axios.create({
 const getListing = async (endpoint, type, page = 1, query = null) => {
   try {
     const url = buildURL(endpoint, type, page, query);
-    console.log(url);
     const { data } = await apiRequest.get(url);
     return data;
   } catch (error) {

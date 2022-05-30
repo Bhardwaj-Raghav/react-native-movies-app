@@ -1,6 +1,5 @@
-import { Text, View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { INPUT_ICON_COLOR } from "../../utils/constants";
 
 const SearchInput = ({ onChange, value, isError = false }) => {
   return (
@@ -28,7 +27,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignSelf: "center",
     borderWidth: 2,
-    borderColor: "#00000000"
+    borderColor: "#00000000",
   },
   errorStyle: {
     borderColor: "#df6a6a",
