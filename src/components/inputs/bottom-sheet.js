@@ -7,7 +7,8 @@ import { SELECT_COLOR } from "../../utils/constants";
 const BottomSheetInput = ({
   values,
   selectedIndex,
-  onChange,
+  onSelect,
+  onClose = null,
   isVisible = false,
 }) => {
   const sheetRef = useRef(null);
@@ -22,6 +23,7 @@ const BottomSheetInput = ({
       backdropComponent={() =>
         isVisible ? <View style={styles.backdrop}></View> : null
       }
+      onClose={onClose}
     >
       <View style={styles.container}>
         {values.map((singleValue, index) => {
@@ -34,7 +36,7 @@ const BottomSheetInput = ({
                 isCurrent ? styles.pressableChecked : null,
               ]}
               onPress={() => {
-                onChange(index);
+                onSelect(index);
                 sheetRef.current?.forceClose();
               }}
             >

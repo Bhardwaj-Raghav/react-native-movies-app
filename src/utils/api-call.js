@@ -6,9 +6,10 @@ const apiRequest = axios.create({
   baseURL: MOVIE_DB_API_BASE_URL,
 });
 
-const getListing = async (endpoint, type, page = 1) => {
+const getListing = async (endpoint, type, page = 1, query = null) => {
   try {
-    const url = buildURL(endpoint, type, page);
+    const url = buildURL(endpoint, type, page, query);
+    console.log(url);
     const { data } = await apiRequest.get(url);
     return data;
   } catch (error) {

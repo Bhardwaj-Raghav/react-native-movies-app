@@ -1,12 +1,19 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { INPUT_ICON_COLOR } from "../../utils/constants";
 
-const DropDown = ({ title, onPress = undefined }) => {
+const DropDown = ({ title, onPress = undefined, customStyle = {} }) => {
   return (
     <Pressable style={styles.selectDropdownContainer} onPress={onPress}>
-      <View style={styles.selectDropdown}>
+      <View
+        style={
+          Array.isArray(customStyle)
+            ? [styles.selectDropdown, ...customStyle]
+            : [styles.selectDropdown, customStyle]
+        }
+      >
         <Text>{title}</Text>
-        <FontAwesome5 name="chevron-down" size={24} color="#e3e3e3" />
+        <FontAwesome5 name="chevron-down" size={24} color={INPUT_ICON_COLOR} />
       </View>
     </Pressable>
   );
@@ -14,7 +21,7 @@ const DropDown = ({ title, onPress = undefined }) => {
 
 const styles = StyleSheet.create({
   selectDropdownContainer: {
-    height: 125,
+    // height: 125,
     justifyContent: "center",
     alignItems: "center",
   },

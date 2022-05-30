@@ -18,7 +18,7 @@ const Listing = ({
   const [selectedIndex, setSelectedIndex] = useState(
     initialSelectedRequestTypeIndex
   );
-  const [List, setList] = useState(null);
+  const [list, setList] = useState(null);
   const [totalPagesAvailable, setTotalPagesAvailable] = useState(null);
   // const [totalResultsAvailable, setTotalResultsAvailable] = useState(null);
   const [page, setPage] = useState(1);
@@ -53,18 +53,20 @@ const Listing = ({
 
   return (
     <View style={styles.mainContainer}>
-      <DropDown
-        title={requestType[selectedIndex]}
-        onPress={() => {
-          setDropDownSelected(true);
-        }}
-      />
+      <View style={styles.dropdownContainer}>
+        <DropDown
+          title={requestType[selectedIndex]}
+          onPress={() => {
+            setDropDownSelected(true);
+          }}
+        />
+      </View>
       {apiCallActiveStatus ? (
         <PageLoader />
       ) : (
         <FlatList
           style={styles.flatList}
-          data={[...List, { id: -1, isPagination: true }]}
+          data={[...list, { id: -1, isPagination: true }]}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) =>
             !item.isPagination ? (
@@ -91,8 +93,10 @@ const Listing = ({
       <BottomSheetInput
         values={requestType}
         selectedIndex={selectedIndex}
-        onChange={(index) => {
-          setSelectedIndex(index || 0);
+        onSelect={(index) => {
+          setSelectedIndex(index);
+        }}
+        onClose={() => {
           setDropDownSelected(false);
         }}
         isVisible={dropDownSelected}
@@ -104,6 +108,11 @@ const Listing = ({
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+  },
+  dropdownContainer: {
+    height: 125,
+    justifyContent: "center",
+    alignItems: "center",
   },
   flatList: {
     marginBottom: 20,

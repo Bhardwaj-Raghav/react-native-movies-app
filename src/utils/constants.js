@@ -8,6 +8,7 @@ const MOVIE_DB_API_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
 
 const MOVIE_REQUEST_TYPE = ["Now Playing", "Popular", "Top Rated", "Upcoming"];
 const TV_REQUEST_TYPE = ["Airing Today", "On The Air", "Popular", "Top Rated"];
+const SEARCH_REQUEST_TYPE = ["Movie", "Multi", "TV Shows"];
 
 const ENDPOINTS = {
   movie: {
@@ -17,7 +18,7 @@ const ENDPOINTS = {
     Upcoming: "upcoming",
   },
   search: {
-    Movie: "Movie",
+    Movie: "movie",
     Multi: "multi",
     "TV Shows": "tv",
   },
@@ -39,4 +40,5 @@ export {
   MOVIE_REQUEST_TYPE,
   MOVIE_DB_API_IMAGE_BASE_URL,
   TV_REQUEST_TYPE,
+  SEARCH_REQUEST_TYPE,
 };
