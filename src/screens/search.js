@@ -135,7 +135,7 @@ const Search = () => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    paddingTop: 100,
+    marginTop: 20,
   },
   inputsContainer: {
     paddingHorizontal: 40,

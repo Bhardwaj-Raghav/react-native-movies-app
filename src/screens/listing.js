@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   dropdownContainer: {
-    height: 125,
+    height: 100,
     justifyContent: "center",
     alignItems: "center",
   },
