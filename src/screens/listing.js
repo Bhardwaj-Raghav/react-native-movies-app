@@ -1,4 +1,4 @@
-import { View, StyleSheet, FlatList, Text } from "react-native";
+import { View, StyleSheet, FlatList } from "react-native";
 import { useEffect, useState } from "react";
 
 import DropDown from "../components/inputs/dropdown";
@@ -9,6 +9,7 @@ import { getListing } from "../utils/api-call";
 import BottomSheetInput from "../components/inputs/bottom-sheet";
 import Pagination from "../components/pagination";
 import PageLoader from "../components/loader";
+import { getListDataToDisplay } from "../utils/functions";
 
 const Listing = ({
   type,
@@ -35,7 +36,7 @@ const Listing = ({
     setList(results);
     setTotalPagesAvailable(total_pages);
     // setTotalResultsAvailable(total_results);
-    setPage(pageNumber);
+    setPage(1);
     setApiCallActiveStatus(false);
   };
 
@@ -66,23 +67,30 @@ const Listing = ({
       ) : (
         <FlatList
           style={styles.flatList}
-          data={[...list, { id: -1, isPagination: true }]}
+          data={[
+            ...getListDataToDisplay(page, list),
+            { id: -1, isPagination: true },
+          ]}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) =>
             !item.isPagination ? (
-              <ListTile
-                id={item.id}
-                title={item.title || item.originalName || item.name}
-                popularity={item.popularity}
-                releaseDate={item.release_date}
-                imageUrl={item.poster_path}
-              />
+              <>
+                <ListTile
+                  id={item.id}
+                  title={item.title || item.originalName || item.name} // Movies API does not have title so it will fallback to originalname and added another fallback just in case
+                  popularity={item.popularity}
+                  date={item.release_date}
+                  imageUrl={item.poster_path}
+                  type={type}
+                />
+                <View></View>
+              </>
             ) : (
               <Pagination
-                totalPages={totalPagesAvailable}
+                totalPages={2}
                 currentPage={page}
                 onPageChange={(newPage) => {
-                  getList(newPage);
+                  setPage(newPage);
                 }}
               />
             )

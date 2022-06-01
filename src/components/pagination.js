@@ -15,7 +15,9 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
         </Pressable>
       ) : null}
       <Text style={styles.currentPage}>{currentPage}</Text>
-      {totalPages > currentPage ? (
+      {Math.min(totalPages, 500) > currentPage ? (
+        // Limiting total pages to 500 as API only supports upto 500 pages,
+        // It says its 1000 but according to my test its 500
         <Pressable
           style={styles.button}
           onPress={() => {

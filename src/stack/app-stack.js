@@ -1,5 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import DetailScreen from "../screens/detail";
 
 import HomeScreen from "../screens/home";
 import { HEADER_COLOR } from "../utils/constants";
@@ -23,6 +24,14 @@ function AppStack() {
             },
           }}
           component={HomeScreen}
+        />
+        <Stack.Screen
+          name="Detail"
+          component={DetailScreen}
+          options={({ route }) => ({
+            title: route.params.title,
+            headerBackTitle: "Back to List",
+          })}
         />
       </Stack.Navigator>
     </NavigationContainer>

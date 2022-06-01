@@ -1,10 +1,15 @@
+import { useContext } from "react";
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+
+import { HomePageNavigationContext } from "../screens/home";
 
 import { BUTTON_COLOR, MOVIE_DB_API_IMAGE_BASE_URL } from "../utils/constants";
 
-const ListTile = ({ id, title, popularity, releaseDate, imageUrl }) => {
+const ListTile = ({ id, title, popularity, date, imageUrl, type }) => {
+  const { navigation } = useContext(HomePageNavigationContext);
+
   return (
-    <View style={styles.movieTile}>
+    <View style={styles.listTile}>
       <Image
         style={styles.image}
         source={{
@@ -14,10 +19,19 @@ const ListTile = ({ id, title, popularity, releaseDate, imageUrl }) => {
       <View style={styles.rightSideContainer}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.subtitle}>Popularity: {popularity}</Text>
-        <Text style={styles.subtitle}>Release Date: {releaseDate}</Text>
+        <Text style={styles.subtitle}>
+          {"person" === type ? " " : "Release Date:"} {date}
+        </Text>
         <Pressable
           style={styles.button}
           accessibilityLabel="Learn more about this."
+          onPress={() => {
+            navigation.navigate("Detail", {
+              id,
+              type,
+              title,
+            });
+          }}
         >
           <Text style={styles.buttonText}>More Details</Text>
         </Pressable>
@@ -27,9 +41,8 @@ const ListTile = ({ id, title, popularity, releaseDate, imageUrl }) => {
 };
 
 const styles = StyleSheet.create({
-  movieTile: {
+  listTile: {
     width: "100%",
-    // backgroundColor: "#e3e3e3",
     flexDirection: "row",
     paddingHorizontal: 20,
     paddingVertical: 2,

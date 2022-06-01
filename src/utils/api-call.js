@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MOVIE_DB_API_BASE_URL } from "./constants";
+import { MOVIE_DB_API_BASE_URL, MOVIE_DB_API_KEY } from "./constants";
 import { buildURL } from "./util";
 
 const apiRequest = axios.create({
@@ -22,4 +22,15 @@ const getListing = async (endpoint, type, page = 1, query = null) => {
   };
 };
 
-export { getListing };
+const getDetail = async (id, type) => {
+  try {
+    const url = `${type.toLowerCase()}/${id}?api_key=${MOVIE_DB_API_KEY}`;
+    const { data } = await apiRequest.get(url);
+    return data;
+  } catch (error) {
+    console.log({ error });
+  }
+  return {};
+};
+
+export { getListing, getDetail };

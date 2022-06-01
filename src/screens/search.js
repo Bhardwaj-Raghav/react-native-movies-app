@@ -12,6 +12,7 @@ import BottomSheetInput from "../components/inputs/bottom-sheet";
 import Pagination from "../components/pagination";
 import PageLoader from "../components/loader";
 import { BUTTON_COLOR, SEARCH_REQUEST_TYPE } from "../utils/constants";
+import { getListDataToDisplay } from "../utils/functions";
 
 const Search = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -35,7 +36,8 @@ const Search = () => {
     setList(results);
     setTotalPagesAvailable(total_pages);
     // setTotalResultsAvailable(total_results);
-    setPage(pageNumber);
+    // setPage(pageNumber);
+    setPage(1);
     setApiCallActiveStatus(false);
   };
 
@@ -83,6 +85,8 @@ const Search = () => {
         </View>
         {isError ? (
           <Text style={styles.errorText}>Movie/TV show name is required</Text>
+        ) : list && 0 === list.length ? (
+          <Text style={styles.errorText}>No result found for your search</Text>
         ) : (
           <Text style={styles.infoText}>Please select a search type</Text>
         )}
@@ -94,26 +98,37 @@ const Search = () => {
       ) : (
         <FlatList
           style={styles.flatList}
-          data={[...list, { id: -1, isPagination: true }]}
+          data={[
+            ...getListDataToDisplay(page, list),
+            { id: -1, isPagination: true },
+          ]}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) =>
             !item.isPagination ? (
               <ListTile
                 id={item.id}
-                title={item.title || item.originalName || item.name}
+                title={item.title || item.originalName || item.name} // name also works for person search type in multi search
                 popularity={item.popularity}
-                releaseDate={item.release_date}
-                imageUrl={item.poster_path}
+                date={item.release_date} // No release_date for person search type in multi search
+                imageUrl={item.poster_path || item.profile_path} // profile_path for person search type in multi search
+                type={
+                  "Multi" === SEARCH_REQUEST_TYPE[selectedIndex]
+                    ? item.media_type
+                    : "Movie" === SEARCH_REQUEST_TYPE[selectedIndex]
+                    ? "movie"
+                    : "tv"
+                }
               />
-            ) : (
+            ) : list && 0 !== list.length ? (
               <Pagination
-                totalPages={totalPagesAvailable}
+                // totalPages={totalPagesAvailable}
+                totalPages={2}
                 currentPage={page}
                 onPageChange={(newPage) => {
-                  getList(newPage);
+                  setPage(newPage);
                 }}
               />
-            )
+            ) : null
           }
         />
       )}
@@ -135,11 +150,11 @@ const Search = () => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    marginTop: 20,
   },
   inputsContainer: {
     paddingHorizontal: 40,
     marginBottom: 20,
+    marginTop: 20,
   },
   inputContainerText: {
     marginTop: 5,

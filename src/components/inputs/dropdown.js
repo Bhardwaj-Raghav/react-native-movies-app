@@ -21,7 +21,6 @@ const DropDown = ({ title, onPress = undefined, customStyle = {} }) => {
 
 const styles = StyleSheet.create({
   selectDropdownContainer: {
-    // height: 125,
     justifyContent: "center",
     alignItems: "center",
   },
