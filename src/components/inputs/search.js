@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#eaeaea",
     flexDirection: "row",
     width: "100%",
-    paddingVertical: 10,
-    paddingHorizontal: 15,
+    paddingLeft: 15,
+    alignItems: "center",
     borderRadius: 5,
     alignSelf: "center",
     borderWidth: 2,
@@ -33,6 +33,8 @@ const styles = StyleSheet.create({
     borderColor: "#df6a6a",
   },
   inputText: {
+    flex: 1,
     marginLeft: 10,
+    paddingVertical: 10,
   },
 });

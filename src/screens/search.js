@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     flex: 1,
     textAlign: "center",
-    paddingTop: 125,
+    paddingTop: 100,
   },
   flatList: {
     marginBottom: 20,

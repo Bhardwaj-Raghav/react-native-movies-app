@@ -52,6 +52,7 @@ export default DetailScreen;
 const styles = StyleSheet.create({
   mainContainer: {
     alignItems: "center",
+    marginBottom: 50,
   },
   title: {
     fontSize: 20,
