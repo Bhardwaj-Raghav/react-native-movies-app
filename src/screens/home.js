@@ -1,4 +1,3 @@
-import { createContext } from "react";
 import { StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
@@ -13,49 +12,43 @@ import {
 
 const Tab = createMaterialTopTabNavigator();
 
-export const HomePageNavigationContext = createContext({
-  navigation: null,
-});
-
 const HomeScreen = ({ navigation }) => {
   return (
-    <HomePageNavigationContext.Provider value={{ navigation }}>
-      <GestureHandlerRootView style={styles.container}>
-        <Tab.Navigator
-          screenOptions={{
-            tabBarIndicatorStyle: {
-              backgroundColor: HEADER_COLOR,
-              height: 4,
-            },
-            tabBarLabelStyle: {
-              textTransform: "capitalize",
-            },
-          }}
-        >
-          <Tab.Screen
-            name="Movies"
-            children={() => (
-              <Listing
-                type="Movie"
-                initialSelectedRequestTypeIndex={1}
-                requestType={MOVIE_REQUEST_TYPE}
-              />
-            )}
-          />
-          <Tab.Screen name="Search Results" children={() => <Search />} />
-          <Tab.Screen
-            name="TV Shows"
-            children={() => (
-              <Listing
-                type="TV"
-                initialSelectedRequestTypeIndex={2}
-                requestType={TV_REQUEST_TYPE}
-              />
-            )}
-          />
-        </Tab.Navigator>
-      </GestureHandlerRootView>
-    </HomePageNavigationContext.Provider>
+    <GestureHandlerRootView style={styles.container}>
+      <Tab.Navigator
+        screenOptions={{
+          tabBarIndicatorStyle: {
+            backgroundColor: HEADER_COLOR,
+            height: 4,
+          },
+          tabBarLabelStyle: {
+            textTransform: "capitalize",
+          },
+        }}
+      >
+        <Tab.Screen
+          name="Movies"
+          children={() => (
+            <Listing
+              type="Movie"
+              initialSelectedRequestTypeIndex={1}
+              requestType={MOVIE_REQUEST_TYPE}
+            />
+          )}
+        />
+        <Tab.Screen name="Search Results" children={() => <Search />} />
+        <Tab.Screen
+          name="TV Shows"
+          children={() => (
+            <Listing
+              type="TV"
+              initialSelectedRequestTypeIndex={2}
+              requestType={TV_REQUEST_TYPE}
+            />
+          )}
+        />
+      </Tab.Navigator>
+    </GestureHandlerRootView>
   );
 };
 

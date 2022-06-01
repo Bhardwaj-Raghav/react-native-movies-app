@@ -1,12 +1,10 @@
-import { useContext } from "react";
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
-
-import { HomePageNavigationContext } from "../screens/home";
+import { useNavigation } from "@react-navigation/native";
 
 import { BUTTON_COLOR, MOVIE_DB_API_IMAGE_BASE_URL } from "../utils/constants";
 
 const ListTile = ({ id, title, popularity, date, imageUrl, type }) => {
-  const { navigation } = useContext(HomePageNavigationContext);
+  const navigation = useNavigation();
 
   return (
     <View style={styles.listTile}>
