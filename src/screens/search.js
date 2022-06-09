@@ -109,7 +109,7 @@ const Search = () => {
                 id={item.id}
                 title={item.title || item.originalName || item.name} // name also works for person search type in multi search
                 popularity={item.popularity}
-                date={item.release_date} // No release_date for person search type in multi search
+                date={item.release_date || item.first_air_date} // No release_date for person search type in multi search
                 imageUrl={item.poster_path || item.profile_path} // profile_path for person search type in multi search
                 type={
                   "Multi" === SEARCH_REQUEST_TYPE[selectedIndex]

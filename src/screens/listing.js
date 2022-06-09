@@ -79,7 +79,7 @@ const Listing = ({
                   id={item.id}
                   title={item.title || item.originalName || item.name} // Movies API does not have title so it will fallback to originalname and added another fallback just in case
                   popularity={item.popularity}
-                  date={item.release_date}
+                  date={item.release_date || item.first_air_date}
                   imageUrl={item.poster_path}
                   type={type}
                 />

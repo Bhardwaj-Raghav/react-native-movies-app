@@ -40,7 +40,8 @@ const DetailScreen = ({ route }) => {
           <Text style={styles.stats}>
             Popularity: {data.popularity} |{" "}
             {"person" === route.params.type ? "Birth Date" : "Release Date"}:{" "}
-            {data.release_date || data.birthday}
+            {/* release_date: for Movies, birthday: for People Search (in Multi Search), first_air_date: for TV Search */}
+            {data.release_date || data.birthday || data.first_air_date} 
           </Text>
         </View>
       )}
